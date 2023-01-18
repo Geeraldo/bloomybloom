@@ -3,6 +3,7 @@ import Vue from "vue";
 import Vuex from "vuex";
 
 Vue.use(Vuex);
+const baseUrl = 'https://easy-gray-turkey-wig.cyclic.app'
 
 export default new Vuex.Store({
   state: {
@@ -40,7 +41,7 @@ export default new Vuex.Store({
   actions: {
     fetchCategories({ commit }) {
       axios({
-        url: "http://localhost:3000/category",
+        url: `${baseUrl}/category`,
         method: "GET",
       })
         .then(({ data }) => {
@@ -52,7 +53,7 @@ export default new Vuex.Store({
     },
     fetchProducts({ commit }) {
       axios({
-        url: `http://localhost:3000/products`,
+        url: `${baseUrl}/products`,
         method: "GET",
       })
         .then(({ data }) => {
@@ -64,21 +65,21 @@ export default new Vuex.Store({
     },
     login(context, payload) {
       return axios({
-        url: "http://localhost:3000/login",
+        url: `${baseUrl}/login`,
         method: "POST",
         data: payload,
       });
     },
     register(context, payload) {
       return axios({
-        url: "http://localhost:3000/register",
+        url: `${baseUrl}/register`,
         method: "POST",
         data: payload,
       });
     },
     search({ commit }, data) {
       axios({
-        url: "http://localhost:3000/products/search",
+        url: `${baseUrl}/products/search`,
         method: "POST",
         data,
       })
@@ -96,7 +97,7 @@ export default new Vuex.Store({
     },
     fetchHistory({ commit }) {
       axios({
-        url: "http://localhost:3000/histories/",
+        url: `${baseUrl}/histories/`,
         method: "GET",
         headers: {
           access_token: localStorage.access_token,
@@ -111,7 +112,7 @@ export default new Vuex.Store({
     },
     fetchTransaction({ commit }, id) {
       axios({
-        url: `http://localhost:3000/transaction/${id}`,
+        url: `${baseUrl}/transaction/${id}`,
         method: "GET",
         headers: {
           access_token: localStorage.access_token,
@@ -126,7 +127,7 @@ export default new Vuex.Store({
     },
     fetchCart({ commit }) {
       axios({
-        url: "http://localhost:3000/carts/1",
+        url: `${baseUrl}/carts/1`,
         method: "GET",
         headers: {
           access_token: localStorage.access_token,
@@ -146,7 +147,7 @@ export default new Vuex.Store({
     addCart(context, payload) {
       console.log("tes");
       return axios({
-        url: "http://localhost:3000/carts/1",
+        url: `${baseUrl}/carts/1`,
         method: "POST",
         data: payload,
         headers: {
@@ -156,7 +157,7 @@ export default new Vuex.Store({
     },
     patchCart(context, payload) {
       return axios({
-        url: `http://localhost:3000/carts/${payload.cartId}`,
+        url: `${baseUrl}/carts/${payload.cartId}`,
         method: "PATCH",
         data: payload.quantity,
         headers: {
@@ -166,7 +167,7 @@ export default new Vuex.Store({
     },
     patchProduct(context, payload) {
       return axios({
-        url: `http://localhost:3000/products/${payload.id}`,
+        url: `${baseUrl}/products/${payload.id}`,
         method: "PATCH",
         data: payload.stock,
         headers: {
@@ -179,7 +180,7 @@ export default new Vuex.Store({
     },
     deleteProduct(context, payload) {
       return axios({
-        url: `http://localhost:3000/carts/${payload}`,
+        url: `${baseUrl}/carts/${payload}`,
         method: "DELETE",
         data: payload,
         headers: {
@@ -189,7 +190,7 @@ export default new Vuex.Store({
     },
     addTransaction(context, payload) {
       return axios({
-        url: "http://localhost:3000/transaction/",
+        url: `${baseUrl}/transaction/`,
         method: "POST",
         data: payload,
         headers: {
@@ -199,7 +200,7 @@ export default new Vuex.Store({
     },
     addHistory(context, payload) {
       return axios({
-        url: "http://localhost:3000/histories/",
+        url: `${baseUrl}/histories/`,
         method: "POST",
         data: payload,
         headers: {
@@ -209,7 +210,7 @@ export default new Vuex.Store({
     },
     checkoutPaymentGateway(_, payload) {
       axios({
-        url: "http://localhost:3000/payment/createInvoice",
+        url: `${baseUrl}/payment/createInvoice`,
         method: "POST",
         headers: {
           access_token: localStorage.access_token,
